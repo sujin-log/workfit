@@ -1,0 +1,35 @@
+[
+  {
+    "id": 101,
+    "title": "청년 취업 성공 패키지",
+    "region": "서울",
+    "min_age": 19,
+    "max_age": 34,
+    "category": "취업",
+    "deadline": "2026-09-30",
+    "summary": "구직활동 지원금 및 취업 컨설팅 제공",
+    "apply_method": "온라인 신청 (워크넷 접속 후 신청서 작성)"
+  },
+  {
+    "id": 102,
+    "title": "청년 창업 지원금",
+    "region": "서울",
+    "min_age": 20,
+    "max_age": 39,
+    "category": "창업",
+    "deadline": "2026-10-15",
+    "summary": "초기 창업자 대상 최대 2000만원 지원",
+    "apply_method": "사업계획서 제출 후 심사"
+  },
+  {
+    "id": 103,
+    "title": "청년 월세 지원",
+    "region": "경기",
+    "min_age": 19,
+    "max_age": 34,
+    "category": "주거",
+    "deadline": "2026-09-20",
+    "summary": "월 최대 20만원, 12개월 지원",
+    "apply_method": "복지로 온라인 신청"
+  }
+]

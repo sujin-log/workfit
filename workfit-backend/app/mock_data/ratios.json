@@ -1,0 +1,13 @@
+{
+  "category_ratio": [
+    { "category": "직업훈련", "percent": 25 },
+    { "category": "채용연계", "percent": 45 },
+    { "category": "창업지원", "percent": 20 },
+    { "category": "노동권익", "percent": 10 }
+  ],
+  "sentiment_ratio": [
+    { "sentiment": "긍정", "percent": 40 },
+    { "sentiment": "중립", "percent": 35 },
+    { "sentiment": "부정", "percent": 25 }
+  ]
+}

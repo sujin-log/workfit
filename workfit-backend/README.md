@@ -61,7 +61,6 @@
 
 ### 외부 API 연동
 - ❌ BigKinds API (뉴스 수집)
-- ❌ 온통청년 API (정책 정보)
 - ❌ Claude API (워크챗 실제 답변 - 선택사항)
 
 ### 데이터베이스
@@ -275,7 +274,7 @@ psycopg2-binary==2.9.9
 - [ ] CORS 설정 수정 (프로덕션 URL로 제한)
 - [ ] SECRET_KEY 보안 강화 (.env로 이동)
 - [ ] ANTHROPIC_API_KEY 설정 (워크챗용)
-- [ ] BigKinds / 온통청년 API 키 발급 및 설정
+- [ ] BigKinds API 키 발급 및 설정
 - [ ] 환경 변수 (.env) 설정
 - [ ] 에러 핸들링 강화
 - [ ] 로깅 설정
@@ -322,7 +321,6 @@ pip install -r requirements.txt
 
 ### Phase 2 (중간 우선순위)
 - [ ] BigKinds API 연동
-- [ ] 온통청년 API 연동
 - [ ] 데이터 검증 강화
 
 ### Phase 3 (낮은 우선순위)

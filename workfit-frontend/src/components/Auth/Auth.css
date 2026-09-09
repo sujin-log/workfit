@@ -1,67 +1,254 @@
 .auth-container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
+  background: linear-gradient(135deg, #8b9ef8 0%, #8d66b8 100%);
+  padding: 40px 20px;
   font-family: inherit;
 }
 
+/* ==================== 로그인 카드 (분할 레이아웃) ==================== */
+.login-card {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  max-width: 1040px;
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
+  display: grid;
+  grid-template-columns: 38% 62%;
+  min-height: 620px;
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+/* 좌측: 로그인 브랜드 영역 */
+.login-brand {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 50px 36px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .login-brand {
+    display: none;
+  }
+}
+
+.opportunity-icon {
+  width: 140px;
+  height: 120px;
+  order: 1;
+  flex-shrink: 0;
+}
+
+.opportunity-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.login-brand .brand-content {
+  order: 2;
+  text-align: center;
+}
+
+.login-brand h2 {
+  font-size: 2.1em;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.login-brand p {
+  font-size: 0.96em;
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+
+/* 우측: 로그인 폼 영역 */
+.login-form-area {
+  padding: 48px 44px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .login-form-area {
+    padding: 32px 24px;
+  }
+}
+
+.login-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  background: #f5f5f7;
+  padding: 4px;
+  border-radius: 50px;
+}
+
+.login-tab {
+  flex: 1;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  color: #999;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+  border-radius: 50px;
+}
+
+.login-tab.active {
+  background: white;
+  color: #667eea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+.forgot-link,
+.signup-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.forgot-link:hover,
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.97em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.login-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(102, 126, 234, 0.4);
+}
+
+.login-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+/* ==================== 구 로그인 카드 (미사용) ==================== */
 .auth-card {
   background: white;
-  border-radius: 16px;
-  padding: 50px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 48px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   width: 100%;
-  max-width: 400px;
+  max-width: 520px;
   animation: slideUp 0.6s ease-out;
+  display: none;
 }
 
 @media (max-width: 480px) {
   .auth-card {
-    padding: 30px 20px;
+    padding: 32px 24px;
+    max-width: 100%;
   }
 }
 
 .auth-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .auth-header h1 {
-  font-size: 2.5em;
-  margin: 0 0 10px 0;
+  font-size: 2.2em;
+  margin: 0 0 8px 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .auth-header p {
-  color: #6b7280;
-  font-size: 0.95em;
+  color: #888b94;
+  font-size: 0.98em;
   margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 .auth-tabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
-  border-bottom: 2px solid #e5e7eb;
+  gap: 0;
+  margin-bottom: 32px;
+  border-bottom: 2px solid #f0f0f2;
 }
 
 .tab {
   flex: 1;
-  padding: 12px 16px;
+  padding: 14px 16px;
   background: none;
   border: none;
   border-bottom: 3px solid transparent;
-  color: #9ca3af;
+  color: #b5b8c0;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1em;
+  font-size: 0.98em;
+  text-align: center;
 }
 
 .tab:hover {
@@ -76,93 +263,472 @@
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .form-group label {
   font-weight: 600;
-  color: #374151;
+  color: #2c2e38;
+  font-size: 0.92em;
+  letter-spacing: 0.2px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 11px 13px;
+  border: 1.5px solid #e8e9f0;
+  border-radius: 10px;
   font-size: 0.95em;
-}
-
-.form-group input {
-  padding: 12px 14px;
-  border: 1.5px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 1em;
   font-family: inherit;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
+  background-color: #fafbfc;
+  color: #2c2e38;
 }
 
-.form-group input:focus {
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #d8dae5;
+  background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  background: rgba(102, 126, 234, 0.02);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.08);
+  background-color: white;
 }
 
 .form-group input::placeholder {
-  color: #d1d5db;
+  color: #a8abb5;
 }
 
+.form-group select {
+  cursor: pointer;
+}
+
+.form-group select option {
+  color: #2c2e38;
+  padding: 10px;
+  background-color: white;
+}
+
+/* ==================== 회원가입 카드 ==================== */
+.signup-card {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  max-width: 1040px;
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.3em;
+  color: #999;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover {
+  background: white;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.signup-wrapper {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  min-height: 620px;
+}
+
+@media (max-width: 768px) {
+  .signup-wrapper {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .signup-brand {
+    display: none;
+  }
+}
+
+/* 좌측: 브랜드 영역 */
+.signup-brand {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 50px 36px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.circle-1 {
+  width: 140px;
+  height: 140px;
+  top: -30px;
+  left: -40px;
+}
+
+.circle-2 {
+  width: 100px;
+  height: 100px;
+  bottom: -20px;
+  right: -30px;
+  opacity: 0.6;
+}
+
+.circle-3 {
+  width: 80px;
+  height: 80px;
+  bottom: 60px;
+  left: 20px;
+  opacity: 0.5;
+}
+
+.brand-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 2;
+}
+
+.brand-content h2 {
+  font-size: 2.1em;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand-content p {
+  font-size: 0.96em;
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.brand-icon {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  order: 1;
+  flex-shrink: 0;
+}
+
+.brand-icon svg {
+  width: 62px;
+  height: 62px;
+}
+
+/* 우측: 폼 영역 */
+.signup-form-area {
+  padding: 48px 44px;
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .signup-form-area {
+    padding: 32px 24px;
+  }
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 언더라인 스타일 폼 그룹 */
+.underline-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.underline-form-group label {
+  font-size: 0.84em;
+  font-weight: 700;
+  color: #999;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.underline-form-group input,
+.underline-form-group select {
+  border: none;
+  border-bottom: 1.5px solid #e5e7eb;
+  background: transparent;
+  padding: 12px 0;
+  font-size: 0.98em;
+  font-family: inherit;
+  color: #2c2e38;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.underline-form-group input::placeholder,
+.underline-form-group select option {
+  color: #bbb;
+}
+
+.underline-form-group input:hover,
+.underline-form-group select:hover {
+  border-bottom-color: #d0d0d0;
+}
+
+.underline-form-group input:focus,
+.underline-form-group select:focus {
+  border-bottom-color: #667eea;
+  padding-bottom: 8px;
+}
+
+.underline-form-group select {
+  cursor: pointer;
+  appearance: none;
+  padding-right: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23667eea' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  flex: 1;
+  border: none;
+  border-bottom: 1.5px solid #e5e7eb;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 0.95em;
+  font-family: inherit;
+  color: #2c2e38;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.password-input-wrapper input::placeholder {
+  color: #bbb;
+}
+
+.password-input-wrapper input:hover {
+  border-bottom-color: #d0d0d0;
+}
+
+.password-input-wrapper input:focus {
+  border-bottom-color: #667eea;
+  padding-bottom: 8px;
+}
+
+.check-icon {
+  color: #22c55e;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+/* 약관 동의 */
+.terms-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #667eea;
+  flex-shrink: 0;
+}
+
+.terms-checkbox label {
+  font-size: 0.92em;
+  color: #555;
+  cursor: pointer;
+  margin: 0;
+}
+
+.terms-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.terms-link:hover {
+  text-decoration: underline;
+}
+
+/* 회원가입 버튼 */
+.signup-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.97em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.signup-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(102, 126, 234, 0.4);
+}
+
+.signup-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.signup-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* 로그인 링크 */
+.login-link {
+  text-align: center;
+  font-size: 0.92em;
+  color: #888;
+  margin: 0;
+}
+
+.login-text-btn {
+  background: none;
+  border: none;
+  color: #667eea;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.login-text-btn:hover {
+  text-decoration: underline;
+}
+
+/* ==================== 공통 ==================== */
 .error-message {
-  background: #fee2e2;
-  color: #dc2626;
-  padding: 12px 14px;
-  border-radius: 8px;
-  font-size: 0.9em;
-  border-left: 4px solid #dc2626;
+  background: #fef3f2;
+  color: #c5192d;
+  padding: 13px 15px;
+  border-radius: 10px;
+  font-size: 0.93em;
+  border-left: 4px solid #c5192d;
   animation: shake 0.3s ease-in-out;
+  font-weight: 500;
+}
+
+.success-message {
+  background: #f0fdf4;
+  color: #16a34a;
+  padding: 13px 15px;
+  border-radius: 10px;
+  font-size: 0.93em;
+  border-left: 4px solid #16a34a;
+  font-weight: 500;
 }
 
 .submit-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 0.98em;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 10px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  margin-top: 6px;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  letter-spacing: 0.3px;
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 8px 28px rgba(102, 126, 234, 0.35);
 }
 
 .submit-btn:active:not(:disabled) {
   transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
 .submit-btn:disabled {
-  opacity: 0.7;
+  opacity: 0.65;
   cursor: not-allowed;
 }
 
 .demo-info {
   text-align: center;
   font-size: 0.85em;
-  color: #6b7280;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #e5e7eb;
+  color: #888b94;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #f0f0f2;
+  font-weight: 500;
 }
 
 .auth-footer {
   text-align: center;
-  margin-top: 30px;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9em;
+  margin-top: 32px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85em;
+  font-weight: 500;
 }
 
 .auth-footer p {
@@ -173,7 +739,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;

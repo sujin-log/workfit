@@ -43,16 +43,6 @@ export default function Home({ user, onLogout }) {
 
   return (
     <div className="home-container">
-      <div className="home-navbar">
-        <div className="navbar-left">
-          <h2>🎯 청년워크핏</h2>
-        </div>
-        <div className="navbar-right">
-          <span className="user-name">👤 {user?.name}님</span>
-          <button className="logout-btn" onClick={onLogout}>로그아웃</button>
-        </div>
-      </div>
-
       <div className="home-content-wrapper">
         <div className="home-header">
           <h1>청년워크핏 대시보드</h1>

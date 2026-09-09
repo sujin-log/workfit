@@ -31,6 +31,35 @@ class TokenResponse(BaseModel):
     user: UserResponse
 
 
+class ForgotPasswordRequest(BaseModel):
+    email: str
+
+
+class ForgotPasswordResponse(BaseModel):
+    message: str
+    reset_token: str
+
+
+class ResetPasswordRequest(BaseModel):
+    reset_token: str
+    new_password: str
+
+
+class ResetPasswordResponse(BaseModel):
+    message: str
+    success: bool
+
+
+class UpdateProfileRequest(BaseModel):
+    name: str
+    age: int
+
+
+class UpdateProfileResponse(BaseModel):
+    message: str
+    user: dict
+
+
 # ---------- 워크챗 ----------
 class ChatRequest(BaseModel):
     question: str

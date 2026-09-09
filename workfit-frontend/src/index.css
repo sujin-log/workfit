@@ -145,3 +145,22 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gray-600);
 }
+
+/* 공통 메시지 스타일 */
+.error-message {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #cc0000;
+}
+
+.success-message {
+  background: #f0fdf4;
+  color: #16a34a;
+  border-left: 4px solid #16a34a;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}

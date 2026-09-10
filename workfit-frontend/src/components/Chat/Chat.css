@@ -17,7 +17,7 @@
 .btn-new-chat {
   width: 100%;
   padding: 12px 16px;
-  background-color: #0066cc;
+  background: var(--gradient-purple);
   color: white;
   border: none;
   border-radius: 6px;
@@ -29,7 +29,8 @@
 }
 
 .btn-new-chat:hover {
-  background-color: #0052a3;
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .history-section {
@@ -54,7 +55,7 @@
 }
 
 .btn-toggle-history.active {
-  background-color: #0066cc;
+  background: var(--gradient-purple);
 }
 
 .history-list {
@@ -212,13 +213,27 @@
 }
 
 .message.user .message-content {
-  background-color: #0066cc;
+  background: var(--gradient-purple);
   color: white;
   border-radius: 18px 18px 0 18px;
 }
 
+.message.user .message-content * {
+  color: white !important;
+}
+
+.message.user .message-content p,
+.message.user .message-content h1,
+.message.user .message-content h2,
+.message.user .message-content h3,
+.message.user .message-content strong,
+.message.user .message-content em,
+.message.user .message-content li {
+  color: white;
+}
+
 .message.assistant .message-content {
-  background-color: white;
+  background-color: var(--light-purple);
   color: #333;
   border: 1px solid #e8e8e8;
   border-radius: 18px 18px 18px 0;
@@ -244,7 +259,7 @@
 .related-laws strong {
   display: block;
   margin-bottom: 8px;
-  color: #0066cc;
+  color: #667eea;
 }
 
 .related-laws ul {
@@ -301,14 +316,7 @@
   }
 }
 
-.error-message {
-  background-color: #ffe6e6;
-  color: #cc0000;
-  padding: 12px;
-  border-radius: 6px;
-  margin: 10px 20px;
-  border-left: 4px solid #cc0000;
-}
+/* .error-message is defined globally in index.css */
 
 .chat-input-form {
   display: flex;
@@ -330,8 +338,8 @@
 
 .chat-input:focus {
   outline: none;
-  border-color: #0066cc;
-  box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
+  border-color: #667eea;
+  box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
 }
 
 .chat-input:disabled {
@@ -341,7 +349,7 @@
 
 .btn-send {
   padding: 12px 24px;
-  background-color: #0066cc;
+  background: var(--gradient-purple);
   color: white;
   border: none;
   border-radius: 6px;
@@ -352,12 +360,12 @@
 }
 
 .btn-send:hover:not(:disabled) {
-  background-color: #0052a3;
   transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 .btn-send:disabled {
-  background-color: #ccc;
+  background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
   cursor: not-allowed;
 }
 

@@ -661,27 +661,7 @@
   text-decoration: underline;
 }
 
-/* ==================== 공통 ==================== */
-.error-message {
-  background: #fef3f2;
-  color: #c5192d;
-  padding: 13px 15px;
-  border-radius: 10px;
-  font-size: 0.93em;
-  border-left: 4px solid #c5192d;
-  animation: shake 0.3s ease-in-out;
-  font-weight: 500;
-}
-
-.success-message {
-  background: #f0fdf4;
-  color: #16a34a;
-  padding: 13px 15px;
-  border-radius: 10px;
-  font-size: 0.93em;
-  border-left: 4px solid #16a34a;
-  font-weight: 500;
-}
+/* Error and success messages are defined in index.css (global styles) */
 
 .submit-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

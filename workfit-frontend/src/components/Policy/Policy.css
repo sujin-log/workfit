@@ -133,14 +133,7 @@
   font-size: 1.1rem;
 }
 
-.error-message {
-  background-color: #ffe6e6;
-  color: #cc0000;
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  border-left: 4px solid #cc0000;
-}
+/* .error-message is defined globally in index.css */
 
 @media (max-width: 1024px) {
   .policy-container {

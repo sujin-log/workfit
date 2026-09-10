@@ -43,7 +43,8 @@ export default function Auth({ onLoginSuccess }) {
         await handleSignup();
       }
     } catch (err) {
-      setError(err.message);
+      const errorMessage = err.response?.data?.detail || err.message || '요청 처리 중 오류가 발생했습니다.';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

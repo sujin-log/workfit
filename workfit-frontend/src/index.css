@@ -17,6 +17,9 @@
   --gray-200: #e5e7eb;
   --gray-50: #f9fafb;
 
+  --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --light-purple: #f5f3ff;
+
   --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

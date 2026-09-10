@@ -20,13 +20,37 @@ def search_related_articles(question: str, top_k: int = 2) -> list[dict]:
 
 
 def generate_answer(question: str, related_articles: list[dict]) -> str:
-    """더미 답변 생성 (RAG는 나중)"""
-    context = "\n".join(f"- {a['law']}: {a['content']}" for a in related_articles)
-    return (
-        f"[개발 중] 질문: '{question}'\n\n"
-        f"관련 법 근거:\n{context}\n\n"
-        f"실제 AI 상담은 후에 구현될 예정입니다."
-    )
+    """Google Gemini API를 사용한 답변 생성"""
+    import google.generativeai as genai
+
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        context = "\n".join(f"- {a['law']}: {a['content']}" for a in related_articles)
+        return f"Google Gemini API 키가 설정되지 않았습니다.\n\n관련 법 근거:\n{context}"
+
+    try:
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel("gemini-3.6-flash")
+
+        context = "\n".join(f"- {a['law']}: {a['content']}" for a in related_articles)
+
+        prompt = f"""다음은 청년 정책 관련 법 조항입니다:
+
+{context}
+
+사용자 질문: {question}
+
+지침:
+1. 위 법 조항을 참고해서 친구처럼 편하게 답변해줘
+2. 마크다운 문법(**볼드**, ###제목, ---, 번호 리스트 등)은 절대 쓰지 말고 자연스러운 문장으로만 답변
+3. 3~5문장 이내로 핵심만 짧게 답변
+4. 카카오톡으로 친구가 설명해주는 듯한 편한 톤 유지"""
+
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        context = "\n".join(f"- {a['law']}: {a['content']}" for a in related_articles)
+        return f"AI 상담 처리 중 오류가 발생했습니다: {str(e)}\n\n관련 법 근거:\n{context}"
 
 
 @router.post("/chat", response_model=ChatResponse)

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import './Chat.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -164,7 +165,7 @@ export default function Chat() {
           {messages.map((msg, idx) => (
             <div key={idx} className={`message ${msg.role}`}>
               <div className="message-content">
-                <p>{msg.content}</p>
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
                 {msg.relatedLaws && msg.relatedLaws.length > 0 && (
                   <div className="related-laws">
                     <strong>관련 법조항:</strong>

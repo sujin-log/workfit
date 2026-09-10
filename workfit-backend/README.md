@@ -42,7 +42,7 @@
 ### 워크챗 (Chat)
 - ✅ 질문 & 답변 (`POST /api/chat`)
 - ✅ 관련 법조항 추출
-- ✅ Claude API 통합 (선택사항)
+- ✅ Google Gemini API 통합
 - ✅ 더미 답변 (API 키 없을 때)
 - ✅ 채팅 이력 (`GET /api/chat/history`)
 
@@ -61,7 +61,7 @@
 
 ### 외부 API 연동
 - ❌ BigKinds API (뉴스 수집)
-- ❌ Claude API (워크챗 실제 답변 - 선택사항)
+- [x] Google Gemini API (워크챗 실제 답변)
 
 ### 데이터베이스
 - ❌ PostgreSQL 연동 (현재 메모리 저장소)
@@ -80,7 +80,7 @@ pip install -r requirements.txt
 
 ```bash
 cp .env.example .env
-# .env 파일을 열어서 ANTHROPIC_API_KEY 채우기 (없어도 정상 동작)
+# .env 파일을 열어서 GOOGLE_API_KEY 채우기 (없어도 더미 답변으로 정상 동작)
 ```
 
 ### 3. 서버 실행
@@ -273,7 +273,7 @@ psycopg2-binary==2.9.9
 - [ ] PostgreSQL 데이터베이스 연동
 - [ ] CORS 설정 수정 (프로덕션 URL로 제한)
 - [ ] SECRET_KEY 보안 강화 (.env로 이동)
-- [ ] ANTHROPIC_API_KEY 설정 (워크챗용)
+- [ ] GOOGLE_API_KEY 설정 (워크챗용)
 - [ ] BigKinds API 키 발급 및 설정
 - [ ] 환경 변수 (.env) 설정
 - [ ] 에러 핸들링 강화
@@ -285,7 +285,7 @@ psycopg2-binary==2.9.9
 
 1. **메모리 저장소**: 서버 재시작 시 모든 데이터 초기화
 2. **더미데이터**: BigKinds, 온통청년 API 미연동 (JSON 사용)
-3. **워크챗**: Claude API 키 없으면 더미 답변
+3. **워크챗**: Google Gemini API 키 없으면 더미 답변
 4. **CORS**: 현재 모든 도메인 허용 (배포 시 수정 필수)
 
 ---
@@ -317,7 +317,7 @@ pip install -r requirements.txt
 
 ### Phase 1 (높은 우선순위)
 - [ ] PostgreSQL 데이터베이스 완성
-- [ ] Claude API 워크챗 테스트
+- [x] Google Gemini API 워크챗 테스트
 
 ### Phase 2 (중간 우선순위)
 - [ ] BigKinds API 연동
@@ -347,4 +347,14 @@ http://localhost:8000/docs
 
 ---
 
-**마지막 업데이트**: 2026-09-10
+**마지막 업데이트**: 2026-09-11
+
+## 최근 변경사항 (2026-09-11)
+
+**완료된 작업:**
+- ✅ Google Gemini API 통합 (gemini-3.6-flash 모델)
+- ✅ 워크챗 Markdown 형식 제거 (자연스러운 문장 답변)
+- ✅ 비밀번호 찾기 토큰 기반 재설정
+- ✅ 프로필 수정 (이름, 생년도)
+- ✅ JWT 기반 인증 강화
+- ✅ .env.example 파일 생성

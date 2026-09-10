@@ -52,6 +52,9 @@ def register(req: RegisterRequest, session: Session = Depends(get_session)):
 
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        print(f"[회원가입 에러] {type(e).__name__}: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"회원가입 실패: {str(e)}")
 
     token = create_access_token(user.id, user.email)
     return TokenResponse(access_token=token, user={"id": user.id, "email": user.email, "name": user.name})

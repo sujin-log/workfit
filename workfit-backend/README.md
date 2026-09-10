@@ -39,11 +39,14 @@
 - ✅ 댓글 추가 (`POST /api/community/posts/{post_id}/comments`)
 - ✅ 좋아요 (`POST /api/community/posts/{post_id}/like`)
 
-### 워크챗 (Chat)
-- ✅ 질문 & 답변 (`POST /api/chat`)
-- ✅ 관련 법조항 추출
-- ✅ Google Gemini API 통합
-- ✅ 더미 답변 (API 키 없을 때)
+### 워크챗 (Chat) - RAG 파이프라인
+- ✅ **RAG 기반 검색** (`POST /api/chat`)
+  - 근로기준법 132개 조문 의미 기반 검색 (ChromaDB + bge-m3)
+  - Top-5 관련 조문 자동 추출
+- ✅ **Google Gemini 3.6 Flash 통합**
+  - 자연스러운 대화형 답변 생성
+  - 마크다운 제거 후 일반 텍스트 응답
+- ✅ 폴백 검색 (ChromaDB 실패 시 키워드 매칭)
 - ✅ 채팅 이력 (`GET /api/chat/history`)
 
 ### 마이페이지 (MyPage)
@@ -57,14 +60,27 @@
 
 ---
 
-## ❌ 아직 미구현 기능
+## 📋 프로젝트 범위 및 구현 상태
 
-### 외부 API 연동
-- ❌ BigKinds API (뉴스 수집)
-- [x] Google Gemini API (워크챗 실제 답변)
+### 이번 프로젝트에 포함된 기능
+✅ **근로기준법 RAG 파이프라인** (핵심)
+  - 국가법령정보센터 API에서 132개 조문 수집
+  - ChromaDB + bge-m3 임베딩으로 의미 기반 검색
+  - Gemini 3.6 Flash로 자연스러운 답변 생성
+
+✅ 기본 정책/커뮤니티 기능 (더미 데이터)
+
+### 추후 연동 예정
+🔄 **BigKinds API** (뉴스 트렌드, 감정 분석)
+  - 현재: 더미 JSON 사용 (news_trend.json)
+  - 향후: 실시간 뉴스 수집 및 감정 분석 기능 추가 예정
+
+### 사용하지 않는 기능
+❌ **온통청년 API** (국가법령정보센터 API로 완전히 대체)
 
 ### 데이터베이스
-- ❌ PostgreSQL 연동 (현재 메모리 저장소)
+- 현재: 인메모리 저장소 (서버 재시작 시 초기화)
+- 향후: PostgreSQL 연동 예정
 
 ---
 
@@ -215,6 +231,8 @@ Authorization: Bearer {token}
 - pip
 
 ### 설치된 패키지
+
+**Core Framework**
 ```
 fastapi==0.115.0
 uvicorn[standard]==0.30.6
@@ -224,9 +242,15 @@ passlib==1.7.4
 bcrypt==4.0.1
 python-multipart==0.0.9
 python-dotenv==1.0.1
-httpx==0.27.2
-sqlmodel==0.0.14
-psycopg2-binary==2.9.9
+```
+
+**RAG 파이프라인 (워크챗)**
+```
+google-generativeai==0.3.0 (⚠️ 버전 불일치 - 실제 사용 중: 0.8.6)
+chromadb==0.4.24
+sentence-transformers==2.3.1
+langchain==0.1.17
+PyPDF2==3.0.1
 ```
 
 ---
@@ -315,18 +339,84 @@ pip install -r requirements.txt
 
 ## 📈 다음 개발 계획
 
-### Phase 1 (높은 우선순위)
-- [ ] PostgreSQL 데이터베이스 완성
-- [x] Google Gemini API 워크챗 테스트
+### Phase 1: 배포 준비 (높은 우선순위)
+- [ ] PostgreSQL 데이터베이스 연동
+- [ ] CORS 설정 정제 (프로덕션 URL 지정)
+- [ ] 환경 변수 (.env) 설정 검증
+- [ ] requirements.txt 버전 정확화 (google-generativeai 0.3.0 → 0.8.6)
+- [ ] 에러 로깅 및 모니터링 강화
 
-### Phase 2 (중간 우선순위)
-- [ ] BigKinds API 연동
+### Phase 2: 추가 기능 (중간 우선순위)
+- [ ] **BigKinds API 연동** (뉴스 트렌드, 감정 분석)
+- [ ] Redis 캐싱 (성능 최적화)
+- [ ] 이메일 SMTP 설정 (비밀번호 재설정)
 - [ ] 데이터 검증 강화
 
-### Phase 3 (낮은 우선순위)
+### Phase 3: 향후 확장 (낮은 우선순위)
+- [ ] 온통청년 API 정책 실시간 연동 (선택사항)
+- [ ] 추가 법령 데이터 (근로기준법 외 타 법령)
 - [ ] 캐싱 (Redis)
-- [ ] 로깅 시스템
-- [ ] 배치 작업 (뉴스 수집)
+- [ ] 로깅 시스템 개선
+
+---
+
+## 📅 법령 개정 대비 기능
+
+### 현재 구현된 기능
+✅ **수집일자 메타데이터**
+  - ChromaDB 저장 시 각 조문에 수집일자 기록
+  - 워크챗 답변 끝에 "본 답변은 [수집일자] 기준"이라고 자동 표시
+
+✅ **법령 최신 정보 고지**
+  - 답변 끝에 "최신 정보는 국가법령정보센터(law.go.kr)에서 확인하실 수 있습니다" 안내 문구 자동 추가
+
+### 향후 개선 사항: 정기 재수집 자동화
+법령이 개정될 수 있으므로, 정기적으로 최신 데이터를 수집하는 자동화가 필요합니다.
+
+**권장 구현 방식:**
+
+1. **Celery + Redis 기반 스케줄러**
+   ```python
+   # 매주 월요일 새벽 2시에 자동 실행
+   from celery.schedules import crontab
+   from celery import shared_task
+   
+   @shared_task
+   def scheduled_rebuild_chroma():
+       # rebuild_chroma_bge_m3.py의 rebuild_chroma_with_bge_m3() 실행
+       from scripts.rebuild_chroma_bge_m3 import rebuild_chroma_with_bge_m3
+       rebuild_chroma_with_bge_m3()
+   
+   app.conf.beat_schedule = {
+       'rebuild-chroma-weekly': {
+           'task': 'app.tasks.scheduled_rebuild_chroma',
+           'schedule': crontab(hour=2, minute=0, day_of_week=1),
+       },
+   }
+   ```
+
+2. **APScheduler 기반 (더 간단)**
+   ```python
+   from apscheduler.schedulers.background import BackgroundScheduler
+   from apscheduler.triggers.cron import CronTrigger
+   
+   scheduler = BackgroundScheduler()
+   scheduler.add_job(
+       func=rebuild_chroma_with_bge_m3,
+       trigger=CronTrigger(hour=2, minute=0, day_of_week='mon'),
+       id='rebuild_chroma',
+       name='Weekly ChromaDB Rebuild',
+       replace_existing=True
+   )
+   scheduler.start()
+   ```
+
+3. **GitHub Actions (배포 환경에서)**
+   - Cron 워크플로우로 정기적으로 데이터 재수집
+   - rebuild_chroma_bge_m3.py 실행
+   - 새로운 chroma_db_bge_m3 커밋 및 푸시
+
+**우선순위:** Phase 2 또는 Phase 3 (배포 후 추가)
 
 ---
 

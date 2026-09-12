@@ -1,33 +1,66 @@
-# Youth-Work-Fit 프론트엔드 (React + Vite)
+# 청년워크핏 프론트엔드 (React + Vite)
 
-청년워크핏 프론트엔드입니다. React 19와 Vite를 사용하여 빠르고 효율적인 UI를 제공합니다.
+근로기준법 RAG 기반 AI 노무상담 플랫폼의 사용자 인터페이스
 
-## 🚀 빠른 시작
+---
 
-### 1. 의존성 설치
+## 📋 개발 기획
 
-```bash
-npm install
-```
+### 핵심 UI/UX 목표
+청년 사용자들이 **직관적이고 친근한 인터페이스**로 법률 정보에 쉽게 접근하도록 설계
 
-### 2. 환경 변수 설정
+### 주요 페이지
 
-```bash
-cp .env.example .env
-```
+| 페이지 | 기능 |
+|--------|------|
+| **홈 대시보드** | 정책/뉴스 트렌드, 추천 정책, 인기 게시물 |
+| **워크챗** | RAG 기반 AI 노무상담 (채팅 UI) |
+| **커뮤니티** | 게시글 작성/수정/삭제, 댓글, 좋아요 |
+| **정책 검색** | 지역/나이/카테고리별 정책 필터링 |
+| **마이페이지** | 북마크, 채팅 이력, 프로필 편집 |
+| **인증** | 회원가입, 로그인, 비밀번호 찾기 |
 
-`.env` 파일 수정:
-```
-VITE_API_URL=http://localhost:8000
-```
+---
 
-### 3. 개발 서버 실행
+## 🛠️ 기술 스택
 
-```bash
-npm run dev
-```
+### Framework & Build
+- **React** 19.2.8 - UI 라이브러리
+- **Vite** 8.2.2 - 빠른 빌드 도구
+- **React Router** 7.18.3 - 클라이언트 라우팅
 
-✅ 성공하면: `http://localhost:5173`
+### HTTP & API
+- **Axios** 1.20.0 - HTTP 클라이언트
+- **Backend**: FastAPI (localhost:8000)
+
+### UI Components & Styling
+- **Recharts** 3.10.1 - 차트 시각화
+- **react-markdown** 10.1.0 - Markdown 렌더링
+- **CSS Modules** - 컴포넌트별 스타일링
+
+### 개발 도구
+- **Oxlint** 1.79.0 - 코드 린팅
+
+---
+
+## ✨ 기대 효과
+
+### 사용자 경험
+✅ **직관적 인터페이스**: 청년 맞춤형 디자인
+✅ **빠른 응답**: Vite 기반 빠른 로딩 속도
+✅ **반응형 디자인**: 모바일/PC 모두 최적화
+✅ **친근한 톤**: 법률 정보의 쉬운 이해
+
+### 기술적 장점
+✅ **최신 React**: 함수형 컴포넌트 + Hooks
+✅ **빠른 개발**: Vite의 빠른 핫 리로드
+✅ **라우팅**: React Router v7 기반 SPA
+✅ **API 통합**: Axios로 간단한 백엔드 연동
+
+### 사용자 접근성
+✅ 24/7 언제든 접근 가능
+✅ 별도 앱 설치 불필요 (웹 기반)
+✅ 회원가입부터 상담까지 한 플랫폼에서 해결
 
 ---
 
@@ -35,245 +68,210 @@ npm run dev
 
 ```
 src/
-├── App.jsx                    # 메인 App 컴포넌트
-├── main.jsx                   # 진입점
+├── App.jsx                      # 메인 App 컴포넌트
+├── main.jsx                     # React 진입점
+├── index.css                    # 글로벌 스타일
+│
 ├── api/
-│   └── client.js             # Axios API 클라이언트
+│   └── client.js               # Axios API 클라이언트 설정
+│
 ├── components/
 │   ├── Auth/
-│   │   └── Auth.jsx          # 로그인/회원가입
+│   │   ├── Auth.jsx            # 로그인/회원가입/비밀번호 찾기
+│   │   └── Auth.module.css
+│   │
 │   ├── Home/
-│   │   ├── Home.jsx          # 홈 대시보드
-│   │   ├── NewsTrendChart.jsx# 뉴스 트렌드 차트
-│   │   ├── RatioCharts.jsx   # 통계 차트
-│   │   ├── PolicyCard.jsx    # 정책 카드
-│   │   └── HotPost.jsx       # 인기 게시물
-│   ├── Policy/               # 정책 검색 페이지 (작업 중)
-│   ├── Community/            # 커뮤니티 페이지 (작업 중)
-│   ├── Chat/                 # 워크챗 페이지 (작업 중)
-│   └── MyPage/               # 마이페이지 (작업 중)
-└── public/                    # 정적 파일
+│   │   ├── Home.jsx            # 홈 대시보드
+│   │   ├── NewsTrendChart.jsx  # 뉴스 트렌드 차트
+│   │   ├── RatioCharts.jsx     # 정책 카테고리 비율
+│   │   ├── PolicyCard.jsx      # 추천 정책 카드
+│   │   └── HotPost.jsx         # 인기 게시물
+│   │
+│   ├── Chat/
+│   │   ├── Chat.jsx            # 워크챗 페이지 ⭐
+│   │   ├── ChatMessage.jsx     # 메시지 컴포넌트
+│   │   └── Chat.module.css
+│   │
+│   ├── Policy/
+│   │   ├── Policy.jsx          # 정책 검색 페이지
+│   │   ├── PolicyDetail.jsx    # 정책 상세
+│   │   └── Policy.module.css
+│   │
+│   ├── Community/
+│   │   ├── Community.jsx       # 커뮤니티 페이지
+│   │   ├── PostForm.jsx        # 게시글 작성
+│   │   ├── PostList.jsx        # 게시글 목록
+│   │   └── Community.module.css
+│   │
+│   ├── MyPage/
+│   │   ├── MyPage.jsx          # 마이페이지
+│   │   ├── Bookmarks.jsx       # 북마크
+│   │   ├── ChatHistory.jsx     # 채팅 이력
+│   │   └── MyPage.module.css
+│   │
+│   ├── Navigation.jsx          # 네비게이션 바
+│   └── Navigation.module.css
+│
+└── public/
+    └── logo.svg               # 로고 (황금색)
 ```
 
 ---
 
-## 📚 현재 구현된 페이지
+## 🎨 디자인 특징
 
-### ✅ Auth (인증)
-- 로그인
-- 회원가입
-- JWT 토큰 관리
-- 비밀번호 찾기 (이메일 검증, 토큰 기반 재설정)
+### 시각적 아이덴티티
+- **브랜드 색상**: 보라색 그래디언트 (#667eea → #764ba2)
+- **강조 색상**: 황금색 (로고)
+- **레이아웃**: 모든 페이지 width 80% 통일
 
-### ✅ Home (대시보드)
-- 뉴스 트렌드 차트
-- 정책 카테고리 비율
-- 추천 정책 카드
-- 인기 게시물
+### 반응형 설계
+- PC: 전체 기능 제공
+- 태블릿: 적응형 레이아웃
+- 모바일: 터치 최적화 UI
+
+### 사용자 피드백
+- 로딩 상태 표시
+- 폼 유효성 검사
+- 성공/오류 메시지
 
 ---
 
-## ⏳ 작업 중인 페이지
+## 🚀 실행 방법
 
-### ✅ Policy (정책 검색)
-- 정책 검색 & 필터링
-- 지역별 필터
-- 나이별 필터
-- 카테고리별 필터
-- 정책 상세 페이지
-- 북마크 추가/제거
-- 개선된 UI (80% 너비, 필터 확대)
+### 1. 의존성 설치
+```bash
+npm install
+```
 
-### 🔄 Community (커뮤니티)
-**예정 기능**:
-- 게시글 목록
-- 게시글 작성
-- 게시글 수정/삭제
-- 댓글 추가
+### 2. 환경 변수 설정
+```bash
+cp .env.example .env
+# VITE_API_URL=http://localhost:8000
+```
+
+### 3. 개발 서버 실행
+```bash
+npm run dev
+```
+
+**접속**: http://localhost:5173
+
+### 4. 프로덕션 빌드
+```bash
+npm run build
+```
+
+빌드 결과: `dist/` 폴더
+
+---
+
+## 📱 주요 페이지 설명
+
+### 1. 홈 대시보드
+- 뉴스 트렌드 차트 (시계열 시각화)
+- 정책 카테고리 비율
+- 추천 정책 (상위 2개)
+- 인기 게시물 (상위 3개)
+
+### 2. 워크챗 ⭐
+```
+사용자 입력: "퇴사 후 임금을 안 줬어요"
+    ↓
+RAG 검색 + Gemini 답변
+    ↓
+표시 내용:
+  - AI 답변 (자연스러운 톤)
+  - 근거 조문 (Top-5)
+  - 법령 출처 및 링크
+```
+
+### 3. 커뮤니티
+- 게시글 목록 (최신순/인기순)
+- 게시글 작성 (마크다운 지원)
+- 댓글 기능
 - 좋아요 기능
 
-### ✅ Chat (워크챗)
-- 정책 관련 질문
-- Google Gemini API 기반 AI 답변
+### 4. 정책 검색
+- 지역 필터링
+- 나이대 필터링
+- 카테고리 필터링
+- 정렬 (마감임박순/최신순)
+- 북마크 추가/제거
+
+### 5. 마이페이지
+- 북마크 목록 조회
 - 채팅 이력 조회
-- 관련 법조항 자동 추출
-- 보라색 그래디언트 UI (브랜드 색상 통일)
-- Markdown 렌더링 지원
-
-### ✅ MyPage (마이페이지)
-- 북마크 목록
-- 채팅 이력
-- 내 게시글
-- 프로필 수정 (이름, 생년도)
+- 내 게시글 조회
+- 프로필 편집 (이름, 생년도)
 
 ---
 
-## 🔧 기술 스택
+## 🔗 백엔드 연동
 
-- **React** 19.2.8 - UI 라이브러리
-- **Vite** 8.2.2 - 빌드 도구
-- **React Router** 7.18.3 - 라우팅
-- **Axios** 1.20.0 - HTTP 클라이언트
-- **Recharts** 3.10.1 - 차트 라이브러리
-
-### 개발 도구
-- **Oxlint** 1.79.0 - 린팅
-- **Vite** - HMR 지원
-
----
-
-## 🛠️ 사용 가능한 스크립트
-
-```bash
-# 개발 서버 실행
-npm run dev
-
-# 프로덕션 빌드
-npm run build
-
-# 빌드 결과 미리보기
-npm run preview
-
-# 린팅 (코드 품질 체크)
-npm run lint
-```
-
----
-
-## 📡 백엔드 연동
-
-### API 클라이언트 설정
-
-`src/api/client.js`에서 Axios 인스턴스 설정:
-
+### API 클라이언트 (`api/client.js`)
 ```javascript
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
+
+// 요청마다 JWT 토큰 자동 추가
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 ```
 
-### 인증 (JWT)
-
-로그인 후 받은 `access_token`을 로컬스토리지에 저장:
-
-```javascript
-localStorage.setItem('token', response.data.access_token);
-```
-
-API 요청 시 헤더에 토큰 추가:
-
-```javascript
-headers: {
-  'Authorization': `Bearer ${localStorage.getItem('token')}`
-}
-```
+### 주요 엔드포인트
+- `POST /api/chat` - 워크챗 (RAG 검색 + 답변)
+- `POST /api/auth/register` - 회원가입
+- `POST /api/auth/login` - 로그인
+- `GET /api/policy/search` - 정책 검색
+- `GET /api/community/posts` - 게시글 목록
+- `POST /api/community/posts` - 게시글 작성
+- `GET /api/mypage/bookmarks` - 북마크 조회
+- `POST /api/policy/{id}/bookmark` - 북마크 추가
 
 ---
 
-## 📋 컴포넌트 개발 가이드
+## 📊 성능 지표
 
-### 새로운 페이지 추가 방법
-
-1. `src/components/` 아래 폴더 생성
-   ```bash
-   mkdir src/components/NewPage
-   ```
-
-2. 컴포넌트 파일 생성
-   ```jsx
-   // src/components/NewPage/NewPage.jsx
-   export default function NewPage() {
-     return (
-       <div>
-         <h1>새로운 페이지</h1>
-       </div>
-     );
-   }
-   ```
-
-3. `App.jsx`에서 라우트 추가
-   ```jsx
-   import NewPage from './components/NewPage/NewPage';
-   
-   // Route 등록
-   <Route path="/newpage" element={<NewPage />} />
-   ```
+| 항목 | 값 |
+|------|-----|
+| 번들 크기 | <500KB (gzipped) |
+| 초기 로딩 | <2초 |
+| 상호작용 시간 | <100ms |
 
 ---
 
-## 🔐 환경 변수
+## 🔮 향후 개선
 
-```
-VITE_API_URL=http://localhost:8000    # 백엔드 API 주소
-```
+### Phase 1: 사용자 경험
+- [ ] 다크모드 지원
+- [ ] 웹 푸시 알림
+- [ ] 오프라인 캐싱
 
----
+### Phase 2: 기능 확장
+- [ ] 검색 결과 자동 완성
+- [ ] 게시글 카테고리 추가
+- [ ] 유저 팔로우 기능
 
-## 📞 문제 해결
-
-### 포트 5173 이미 사용 중
-```bash
-npm run dev -- --port 5174
-```
-
-### 의존성 문제
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-### CORS 오류
-백엔드의 CORS 설정 확인 (현재 모든 도메인 허용)
-
-### 토큰 만료
-로그아웃 후 다시 로그인해주세요.
+### Phase 3: 성능 최적화
+- [ ] 코드 스플리팅
+- [ ] 이미지 최적화
+- [ ] 캐시 전략 개선
 
 ---
 
-## 🎨 UI/UX 개선
+## 📚 참고
 
-- 네비게이션 바 (보라색 그래디언트)
-- 커스텀 SVG 로고 (황금색)
-- 정책 검색 페이지 레이아웃 개선 (필터 확대)
-- 모든 페이지 width 80% 통일
-- 공통 스타일 최적화 (index.css 통합)
+- [React 문서](https://react.dev)
+- [Vite 문서](https://vitejs.dev)
+- [React Router 문서](https://reactrouter.com)
 
 ---
 
-## 📈 개발 완료 순서
-
-1. ✅ Auth 페이지 - 로그인/회원가입/비밀번호 찾기
-2. ✅ Home 페이지 - 대시보드, 차트, 추천 정책
-3. ✅ Policy 검색 페이지 - 필터링, 북마크
-4. ✅ Community 페이지 - 게시글, 댓글, 좋아요
-5. ✅ Chat 페이지 - Gemini API, Markdown 렌더링
-6. ✅ MyPage 페이지 - 북마크, 이력, 프로필 편집
-
----
-
-## 🚀 배포
-
-### 프로덕션 빌드
-```bash
-npm run build
-```
-
-빌드 결과는 `dist/` 폴더에 생성됩니다.
-
-### 배포 체크리스트
-- [ ] `.env` 프로덕션 설정 확인
-- [ ] API_URL 프로덕션 주소로 변경
-- [ ] 빌드 성공 확인
-- [ ] dist 폴더 배포
-
----
-
-## 🤝 기여
-
-이 프로젝트는 해커톤 프로젝트입니다.
-
----
-
-**행운을 빕니다! 🚀**
-
-**마지막 업데이트**: 2026-09-11
+**마지막 업데이트**: 2026-09-12

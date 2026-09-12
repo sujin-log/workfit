@@ -1,0 +1,186 @@
+[
+  {
+    "id": "wage_nonpayment",
+    "title": "임금체불 신고 절차",
+    "related_clauses": ["36", "37", "43"],
+    "steps": [
+      {
+        "step": 1,
+        "name": "고용노동부 신고",
+        "duration": "즉시",
+        "agency": "관할 지방고용노동청 또는 1350 전화",
+        "method": "방문 신고 / 온라인 신고 (고용노동부 홈페이지) / 전화 신고 (1350)",
+        "documents": [
+          "신분증 사본",
+          "근로계약서 또는 채용공고",
+          "급여 통장 사본",
+          "임금 체표 (있으면)",
+          "퇴직금 증명서 (퇴직한 경우)"
+        ],
+        "cost": "무료",
+        "note": "신고 접수증 발급받기 (이후 법적 증거)"
+      },
+      {
+        "step": 2,
+        "name": "근로감독관 현장 조사",
+        "duration": "15~30일",
+        "agency": "지방고용노동청",
+        "method": "사업주 소명 기회 제공 후 조사",
+        "documents": [
+          "신고자 진술서 (필요시, 우편 제출 가능)"
+        ],
+        "cost": "무료",
+        "note": "계좌 이체 기록, 근로계약서 등 확인"
+      },
+      {
+        "step": 3,
+        "name": "시정명령 및 지급",
+        "duration": "15일 내 지급 명령",
+        "agency": "지방고용노동청",
+        "method": "사업주에게 시정명령 통지",
+        "documents": [],
+        "cost": "무료",
+        "note": "불이행 시 검찰 송치 (형법 제276조 위반)"
+      },
+      {
+        "step": 4,
+        "name": "정부 선지급 신청 (선택사항)",
+        "duration": "30~45일",
+        "agency": "고용노동부 임금채무자 대위변제사업",
+        "method": "온라인 신청 또는 방문",
+        "documents": [
+          "신고 접수증",
+          "임금 채무 증명서",
+          "통장 사본",
+          "신분증"
+        ],
+        "cost": "무료 (최대 3개월분, 월 290만원 한도)",
+        "note": "사업주가 지급 불능 상태일 때만 신청 가능"
+      }
+    ],
+    "penalty_for_nonpayment": {
+      "type": "형사",
+      "law": "근로기준법 제114조",
+      "punishment": "징역 3년 이하 또는 벌금 2천만원 이하"
+    },
+    "interest_calculation": {
+      "rate": "연 3%",
+      "formula": "미지급임금 × 3% × (지연일수 ÷ 365)",
+      "example": "300만원이 30일 지연 → 약 7,397원"
+    },
+    "typical_processing_time": "50~60일",
+    "contact": {
+      "phone": "1350",
+      "website": "law.go.kr",
+      "agency": "지방고용노동청"
+    }
+  },
+  {
+    "id": "working_hours_violation",
+    "title": "근로시간 위반 신고 절차",
+    "related_clauses": ["50", "52", "56"],
+    "steps": [
+      {
+        "step": 1,
+        "name": "고용노동부 신고",
+        "duration": "즉시",
+        "agency": "관할 지방고용노동청 또는 1350",
+        "method": "전화 / 온라인 / 방문",
+        "documents": [
+          "신분증",
+          "근로계약서",
+          "근무 시간 기록 (일지, 카톡 등)",
+          "급여 통장"
+        ],
+        "cost": "무료",
+        "note": "시간외 근로 증거 자료 준비"
+      },
+      {
+        "step": 2,
+        "name": "근로감독관 조사",
+        "duration": "10~20일",
+        "agency": "지방고용노동청",
+        "method": "사업장 방문 조사",
+        "documents": [],
+        "cost": "무료",
+        "note": "근로 시간 기록부, 타임카드 등 확인"
+      },
+      {
+        "step": 3,
+        "name": "시정명령 또는 고발",
+        "duration": "15~30일",
+        "agency": "지방고용노동청",
+        "method": "시정명령 통지 또는 검찰 송치",
+        "documents": [],
+        "cost": "무료",
+        "note": "미이행 시 형사 처벌"
+      }
+    ],
+    "penalty_for_nonpayment": {
+      "type": "형사",
+      "law": "근로기준법 제111조",
+      "punishment": "징역 2년 이하 또는 벌금 1천만원 이하"
+    },
+    "typical_processing_time": "40~50일",
+    "contact": {
+      "phone": "1350",
+      "website": "law.go.kr"
+    }
+  },
+  {
+    "id": "workplace_injury",
+    "title": "산업재해 신고 및 보상 절차",
+    "related_clauses": ["88", "89"],
+    "steps": [
+      {
+        "step": 1,
+        "name": "사업주에게 신고 및 기관 신고",
+        "duration": "1~2일 이내",
+        "agency": "사업주 / 고용노동부 / 산재보험 가입 기관",
+        "method": "사업주 통보 후 근로복지공단에 신고",
+        "documents": [
+          "신분증",
+          "진단서",
+          "근로계약서",
+          "사고 증명서"
+        ],
+        "cost": "무료",
+        "note": "신속 신고 권장 (시효 3년)"
+      },
+      {
+        "step": 2,
+        "name": "근로복지공단 재해 조사",
+        "duration": "30~60일",
+        "agency": "근로복지공단",
+        "method": "현장 조사, 의료 기록 검토",
+        "documents": [
+          "추가 진단서 (필요시)",
+          "목격자 진술서"
+        ],
+        "cost": "무료",
+        "note": "업무 관련성 판단"
+      },
+      {
+        "step": 3,
+        "name": "보상 결정 및 지급",
+        "duration": "60~90일",
+        "agency": "근로복지공단",
+        "method": "승인 결정 후 계좌 이체",
+        "documents": [],
+        "cost": "무료 (산재보험 급여)",
+        "note": "요양급여, 휴업급여, 장해급여 등"
+      }
+    ],
+    "penalty_for_unreport": {
+      "type": "행정",
+      "law": "산업안전보건법 제31조",
+      "punishment": "과태료 300만원 이상"
+    },
+    "typical_processing_time": "90~150일",
+    "contact": {
+      "phone": "1545-0001",
+      "website": "kcomwel.or.kr",
+      "agency": "근로복지공단"
+    }
+  }
+]
